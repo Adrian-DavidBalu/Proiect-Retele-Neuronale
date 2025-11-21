@@ -1,19 +1,19 @@
-# 📘 README – Etapa 3: Analiza și Pregătirea Setului de Date pentru Rețele Neuronale
+# $${\color{blue}\space📘\space README\space –\space Etapa\space 3:\space Analiza\space si\space Pregatirea\space Setului\space de\space Date\space pentru\space Retele\space Neuronale}$$
 
-**Disciplina:** Rețele Neuronale  
-**Instituție:** POLITEHNICA București – FIIR  
-**Student:** Balu Adrian-David  
-**Data:** 21.11.2025  
+**$${\color{green}Disciplina:}$$** Rețele Neuronale  
+**$${\color{green}Institutie:}$$** POLITEHNICA București – FIIR  
+**$${\color{green}Student:}$$:** Balu Adrian-David  
+**$${\color{green}Data:}$$** 21.11.2025  
 
 ---
 
-## Introducere
+## $${\color{red}INTRODUCERE}$$
 
 Acest document descrie activitățile realizate în **Etapa 3**, în care se analizează și se preprocesează setul de date necesar proiectului „Rețele Neuronale". Scopul etapei este pregătirea corectă a datelor pentru instruirea modelului RN, respectând bunele practici privind calitatea, consistența și reproductibilitatea datelor.
 
 ---
 
-##  1. Structura Repository-ului Github (versiunea Etapei 3)
+##  $${\color{red}1.\space STRUCTURA\space REPOSITORY-ULUI\space GITHUB\space (VERSIUNEA\space ETAPEI\space 3)}$$
 ```
 UnderMyAISkin-RN/
 ├── README.md
@@ -34,15 +34,15 @@ UnderMyAISkin-RN/
 ```
 ---
 
-##  2. Descrierea Setului de Date: UCI Dermatology
+## $${\color{red}2.\space DESCRIEREA\space SETULUI\space DE\space DATE:\space UCI\space Dermatology}$$
 
-### 2.1 Sursa datelor
+### $${\color{green}2.1. \space Sursa\space Datelor}$$
 
 * **Origine:** UCI Machine Learning Repository – Dermatology Data Set
 * **Modul de achiziție:** ☒ Fișier extern (dermatology.data)
 * **Perioada / condițiile colectării:** Date colectate inițial pentru clasificarea bolilor eritremato-scuamoase, colectate pe durata a mai mulți ani și donate ca set de date în data de 31.12.1997.
 
-### 2.2 Caracteristicile dataset-ului
+### $${\color{green}2.2. \space Caracteristicile\space Dataset-ului}$$
 
 * **Număr total de observații:** 366
 * **Număr de caracteristici (features) în setul original:** 34
@@ -50,7 +50,7 @@ UnderMyAISkin-RN/
 * **Tipuri de date:** ☒ Numerice (majoritatea discrete 0-3) / ☐ Categoriale (Clasa de ieșire)
 * **Format fișiere:** ☒ TXT / ☒ Altele: Format tabular fără antet (necesită preprocesare Pandas)
 
-### 2.3 Descrierea fiecărei caracteristici
+### $${\color{green}2.3. \space Descrierea\space Fiecarei\space Caracteristici}$$
 
 | **Caracteristică** | **Tip** | **Unitate** | **Descriere** | **Domeniu valori** |
 | :--- | :--- | :--- | :--- | :--- |
@@ -72,43 +72,43 @@ UnderMyAISkin-RN/
 
 ---
 
-##  3. Analiza Exploratorie a Datelor (EDA) – Sintetic
+##  $${\color{red}3.\space ANALIZA\space EXPLORATORIE\space A\space DATELOR\space (EDA)\space -\space SINTETIC}$$
 
-### 3.1 Statistici descriptive aplicate
+### $${\color{green}3.1. \space Statistici\space Descriptive\space Aplicate}$$
 
 * **Medie, mediană, deviație standard:** Calculul acestor indicatori, în special pentru atributul continuu `Age`, pentru a determina valoarea optimă de imputare pentru datele lipsă.
 * **Min–max și quartile:** Determinarea domeniului de valori și a quartilelor (Q1, Q3) pentru toate caracteristicile, esențială pentru a pregăti etapa de scalare a datelor și pentru a înțelege distribuția.
 * **Distribuții pe caracteristici:** Analiza vizuală a distribuției atributelor discrete (0-3) pentru a înțelege frecvența simptomelor, și a distribuției claselor de ieșire (dezechilibrul de clasă).
 * **Identificarea outlierilor:** Aplicarea metodelor statistice pentru detectarea valorilor extreme, în special în coloana `Age`, înainte de scalare și antrenarea Rețelei Neuronale.
 
-### 3.2 Analiza calității datelor
+### $${\color{green}3.2. \space Analiza\space Calitatii\space Datelor}$$
 
 * **Detectarea valorilor lipsă:** Coloana `Age` conține valori lipsă notate cu `?` 
 * **Detectarea valorilor inconsistente sau eronate:** Nu există valori eronate (non-numerice) în atributele (0-3), dar este imperios necesară gestionarea simbolului `?`
 * **Identificarea caracteristicilor neutilizate din setul de date:** Cele 22 de atribute histopatologice au fost excluse (Feature Selection) pentru a menține modelul non-invaziv.
 
-### 3.3 Probleme identificate
+### $${\color{green}3.3. \space Probleme\space Identificate}$$
 
 * **Tratarea valorilor lipsă în `Age`:** Aproximativ 2% dintre valori (8 din 366) 
 * **Dezechilibru între clase:** Deși setul are 6 clase, repartizarea cazurilor este inegală (Clasa 1 - Psoriazis este dominantă), ceea ce necesită atenție în faza de antrenare și în cea de evaluare.
 
 ---
 
-##  4. Preprocesarea Datelor
+##  $${\color{red}4.\space PREPROCESAREA\space DATELOR}$$
 
-### 4.1 Curățarea datelor
+### $${\color{green}4.1. \space Curatarea\space Datelor}$$
 
 * **Eliminare duplicatelor:** Se verifică integritatea datelor, dar folosind un set deja prestabilit și consacrat, șansele de duplicate sunt minime.
 * **Tratarea valorilor lipsă:**
   * Feature A - imputare artificială `Age`:  Valoarea `?` va fi înlocuită cu mediana vârstelor cunoscute.
 * **Selecția de Caracteristici:** Se rețin exclusiv cele 12 atribute clinice și se elimină restul de 22 de atribute histopatologice.
 
-### 4.2 Transformarea caracteristicilor
+### $${\color{green}4.2. \space Transformarea\space Caracteristicilor}$$
 
 * **Normalizare:** Se aplică MinMaxScaler pe cele 12 atribute de intrare. Aceasta este esențială, în special pentru variabila `Age`, care are un domeniu mult mai mare (liniar) decât celelalte atribute (0-3).
 * **Encoding pentru variabile categoriale:** Coloana de Clasă (1-6) va fi transformată folosind `One-Hot Encoding` (sau `to_categorical` în Keras) pentru a fi compatibilă cu funcția de pierdere (cuantificarea predicțiilor greșite) a rețelei neuronale.
 
-### 4.3 Structurarea seturilor de date
+### $${\color{green}4.3. \space Structurarea\space Seturilor\space De \space Date}$$
 
 **Împărțire recomandată:**
 * 80% – Antrenare
@@ -119,13 +119,13 @@ UnderMyAISkin-RN/
 * Stratificare pentru clasificare: Seturile vor fi împărțite folosind Stratified Sampling (pe baza clasei de ieșire) pentru a menține proporția inegală a claselor în fiecare subset de date.
 * Fără scurgere de informație (data leakage): Scalarea datelor va fi calculată DOAR pe setul de Train și apoi aplicată pe seturile Validation și Test.
 
-### 4.4 Salvarea rezultatelor preprocesării
+### $${\color{green}4.4. \space Salvarea\space Rezultatelor\space Preprocesării}$$
 
 * Datele preprocesate (scalate și encodate) vor fi salvate ca fișiere .`csv` sau `.pkl`.
 
 ---
 
-##  5. Fișiere Generate în Această Etapă
+##  $${\color{red}5.\space FISIERE\space GENERATE\space IN\space ACEASTA\space ETAPA}$$
 
 * `data/raw/dermatology.data` – Date brute
 * `data/processed/dermatology_12features.csv` – Date curățate & scalate (X)
@@ -137,7 +137,7 @@ UnderMyAISkin-RN/
 
 ---
 
-##  6. Stare Etapă (de completat de student)
+##  $${\color{red}6.\space STARE\space ETAPA}$$
 
 - [X] Structură repository configurată
 - [X] Dataset analizat (EDA realizată)
