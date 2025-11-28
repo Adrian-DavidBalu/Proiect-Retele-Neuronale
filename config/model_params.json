@@ -1,0 +1,11 @@
+{
+    "model_name": "dermotriage_mlp_v1",
+    "training_epochs": 100,
+    "batch_size": 32,
+    "input_dim": 12,
+    "output_dim": 6,
+    "layer_structure": [
+        {"neurons": 64, "activation": "relu"},
+        {"neurons": 32, "activation": "relu"}
+    ]
+}
